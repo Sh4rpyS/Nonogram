@@ -27,26 +27,10 @@ Program::Program(const int &winWidth, const int &winHeight, const std::string &w
 
     glfwMakeContextCurrent(window);
 
-    glewInit();
-
-    /* Init glew
-    try 
-    {
-        if (glewInit() != GLEW_OK)
-        {
-            throw "glew init error";
-        }
-    }
-    catch (std::string error)
-    {
-        std::cout << error << std::endl;
-    }
-    */
 
     gameState = RUNNING;
 
     std::cout << glfwGetVersionString() << std::endl;
-    std::cout << glewGetString(GLEW_VERSION) << std::endl;
 }
 
 // Runs once
