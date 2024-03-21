@@ -1,13 +1,14 @@
 #ifndef ENGINECORE_H
 #define ENGINECORE_H
 
-#include <GLFW/glfw3.h>
+#include <Engine/glad/gl.h>
+#include <Engine/GLFW/glfw3.h>
 #include <iostream>
 #include <string>
 
 class Program {
 public:
-    Program(const int &winWidth, const int &winHeight, const std::string &winTitle);
+    Program(const GLuint &winWidth, const GLuint &winHeight, const std::string &winTitle);
     void Start();
 
 private:
@@ -19,7 +20,7 @@ private:
 
     gameStates gameState;
 
-    int winWidth, winHeight;
+    GLuint winWidth, winHeight;
     std::string winTitle;
     GLFWwindow *window;
 

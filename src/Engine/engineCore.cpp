@@ -1,6 +1,6 @@
-#include <engineCore.h>
+#include <Engine/engineCore.h>
 
-Program::Program(const int &winWidth, const int &winHeight, const std::string &winTitle)
+Program::Program(const GLuint &winWidth, const GLuint &winHeight, const std::string &winTitle)
 : winWidth(winWidth), winHeight(winHeight), winTitle(winTitle)
 {
     // Init glfw
@@ -27,10 +27,16 @@ Program::Program(const int &winWidth, const int &winHeight, const std::string &w
 
     glfwMakeContextCurrent(window);
 
+    // Load glad
+    static int version = gladLoadGL(glfwGetProcAddress);
+    if (version == 0) {
+        std::cout << "Failed to initialize OpenGL context" << std::endl;
+    }
 
     gameState = RUNNING;
 
     std::cout << glfwGetVersionString() << std::endl;
+    std::cout << "Glad version: " << GLAD_VERSION_MAJOR(version) << "." << GLAD_VERSION_MINOR(version) << std::endl;
 }
 
 // Runs once
@@ -43,6 +49,7 @@ void Program::Start()
             gameState = STOPPING;
         }
 
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         glfwPollEvents();
         Update();
